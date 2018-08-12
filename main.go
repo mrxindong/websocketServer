@@ -1,6 +1,3 @@
-// Copyright 2013 The Gorilla WebSocket Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
 
 package main
 
@@ -46,7 +43,7 @@ func main() {
 
 	http.HandleFunc("/", serveHome)
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-
+		//如果等待队列过大，则扩容协程池
 		if pool.Running()-pool.Cap()>100 {
 			if poolSize<=12000  {
 				poolSize+=1000
